@@ -1,0 +1,405 @@
+{
+   "openapi": "3.0.1",
+   "info": {
+     "version": "1.0.1",
+     "title": "ONITO REST API - Documentation",
+     "description": "Description of ONITO API here",
+     "contact": {
+       "name": "Noorul Ali",
+       "email": "onitomed@gmail.com",
+       "url": "https://onitomed.github.io"
+     },
+     "license": {
+       "name": "Creative Commons Zero",
+       "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt"
+     }
+   },
+   "servers": [
+     {
+       "url": "http://localhost:8000",
+       "description": "Local Server"
+     },
+     {
+       "url": "https://onitomed.github.io",
+       "description": "Production Site"
+     }
+   ],
+   "tags": [
+     {
+       "name": "Patient Data"
+     },
+     {
+       "name": "Users"
+     }
+   ],
+   "paths": {
+       "/users": {
+           "post": {
+               "tags": [
+                  "Users"
+               ],
+               "description": "This method is the endpoint of a post request to the specified URL. Given a complete request body with user name, email, and password, this method creates a new user in the database and returns details of the user.",
+               "operationId": "registerUser",
+               "summary": "Create a new user in the system",
+               "security": [
+                  {}
+               ],
+               "requestBody": {
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "name": {
+                                 "type": "string",
+                                 "example": "John Doe"
+                              },
+                              "email": {
+                                 "type": "string",
+                                 "example": "john.doe@email.com"
+                              },
+                              "password": {
+                                 "type": "string",
+                                 "description": "unencrypted user's password",
+                                 "example": "!1234aWe1Ro3$#"
+                              },
+                              "role": {
+                                 "type": "string",
+                                 "example": "patient"
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "required": true
+               },
+               "responses": {
+                  "201": {
+                     "description": "User created successfully",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "_id": {
+                                    "type": "string",
+                                    "example": "60564fcb544047cdc3844818"
+                                 },
+                                 "name": {
+                                    "type": "string",
+                                    "example": "John Doe"
+                                 },
+                                 "email": {
+                                    "type": "string",
+                                    "example": "john.doe@email.com"
+                                 },
+                                 "token": {
+                                    "type": "string",
+                                    "example": "442893aba778a.b321dc151d9b1ad98c.64ed56c07f8cbaed",
+                                    "description": "JSON Web Token"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "400": {
+                     "description": "Bad Request From User",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "message": {
+                                    "type": "string",
+                                    "example": "Please add all fields"
+                                 },
+                                 "stack": {
+                                    "type": "string",
+                                    "example": "#### V8 Error at baz (filename.js:10:15) at bar (filename.js:6:3) at foo (filename.js:2:3) at filename.js:13:1"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "500": {
+                     "description": "Internal Server Error",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "message": {
+                                    "type": "string",
+                                    "example": "Internal Server Error"
+                                 },
+                                 "stack": {
+                                    "type": "string",
+                                    "example": "#### V8 Error at baz (filename.js:10:15) at bar (filename.js:6:3) at foo (filename.js:2:3) at filename.js:13:1"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+       },
+       "/users/login": {
+           "post": {
+               "tags": [
+                  "Users"
+               ],
+               "description": "This method is the endpoint of a POST request to the specified URL in the application. Given correct email and password of a user, this method returns a JSONWebToken and user details to login the user on the application.",
+               "operationId": "loginUser",
+               "summary": "Login existing user in the system",
+               "security": [
+                  {}
+               ],
+               "requestBody": {
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "email": {
+                                 "type": "string",
+                                 "example": "john.doe@email.com"
+                              },
+                              "password": {
+                                 "type": "string",
+                                 "description": "unencrypted user's password",
+                                 "example": "!1234aWe1Ro3$#"
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "required": true
+               },
+               "responses": {
+                  "200": {
+                     "description": "User logged in successfully",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "_id": {
+                                    "type": "string",
+                                    "example": "60564fcb544047cdc3844818"
+                                 },
+                                 "name": {
+                                    "type": "string",
+                                    "example": "John Doe"
+                                 },
+                                 "email": {
+                                    "type": "string",
+                                    "example": "john.doe@email.com"
+                                 },
+                                 "token": {
+                                    "type": "string",
+                                    "example": "442893aba778ab321dc151d9b1ad98c64ed56c07f8cbaed",
+                                    "description": "JSON Web Token"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "400": {
+                     "description": "Bad Request From User",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "message": {
+                                    "type": "string",
+                                    "example": "Invalid credentials"
+                                 },
+                                 "stack": {
+                                    "type": "string",
+                                    "example": "#### V8 Error at baz (filename.js:10:15) at bar (filename.js:6:3) at foo (filename.js:2:3) at filename.js:13:1"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "500": {
+                     "description": "Internal Server Error",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "message": {
+                                    "type": "string",
+                                    "example": "Internal Server Error"
+                                 },
+                                 "stack": {
+                                    "type": "string",
+                                    "example": "#### V8 Error at baz (filename.js:10:15) at bar (filename.js:6:3) at foo (filename.js:2:3) at filename.js:13:1"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+       },
+       "/users/me": {
+           "get": {
+               "tags": [
+                  "Users"
+               ],
+               "description": "This method is the endpoint of a GET request at the specified URL of the application. This is a private method requiring JSONWebToken of a logged in user. It returns details of the user in the response body. These details are name, email, user ID. user profile creation date, last data when profile was updated, and user role in the application",
+               "operationId": "getMe",
+               "summary": "Get current user",
+               
+               "security": [
+                  {
+                     "bearerAuth": []
+                  }
+               ],
+               "requestBody": {
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "email": {
+                                 "type": "string",
+                                 "example": "john.doe@email.com"
+                              },
+                              "password": {
+                                 "type": "string",
+                                 "description": "unencrypted user's password",
+                                 "example": "!1234aWe1Ro3$#"
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "required": true
+               },
+               "responses": {
+                  "200": {
+                     "description": "User returned successfully",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "_id": {
+                                    "type": "string",
+                                    "example": "60564fcb544047cdc3844818"
+                                 },
+                                 "name": {
+                                    "type": "string",
+                                    "example": "John Doe"
+                                 },
+                                 "email": {
+                                    "type": "string",
+                                    "example": "john.doe@email.com"
+                                 },
+                                 "role": {
+                                    "type": "string",
+                                    "example": "patient"
+                                 },
+                                 "createdAt": {
+                                    "type": "string",
+                                    "example": "2025-01-18T08:26:12.922Z",
+                                    "description": "User creation date and time"
+                                 },
+                                 "updatedAt": {
+                                    "type": "string",
+                                    "example": "2025-01-18T08:26:12.922Z",
+                                    "description": "User last update date and time"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "401": {
+                     "description": "Unauthorized",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "message": {
+                                    "type": "string",
+                                    "example": "Not authorized, no token"
+                                 },
+                                 "stack": {
+                                    "type": "string",
+                                    "example": "#### V8 Error at baz (filename.js:10:15) at bar (filename.js:6:3) at foo (filename.js:2:3) at filename.js:13:1"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "500": {
+                     "description": "Internal Server Error",
+                     "content": {
+                        "application/json": {
+                           "schema": {
+                              "type": "object",
+                              "properties": {
+                                 "message": {
+                                    "type": "string",
+                                    "example": "Internal Server Error"
+                                 },
+                                 "stack": {
+                                    "type": "string",
+                                    "example": "#### V8 Error at baz (filename.js:10:15) at bar (filename.js:6:3) at foo (filename.js:2:3) at filename.js:13:1"
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+       }
+   },
+   "components": {
+       "securitySchemes": {
+          "bearerAuth": {
+             "type": "http",
+             "scheme": "bearer",
+             "bearerFormat": "JWT"
+          }
+       },
+       "schemas": {
+           "registerUserBody": {
+               "type": "object",
+               "properties": {
+                   "name": {
+                       "type": "string",
+                       "example": "John Doe"
+                   },
+                   "email": {
+                       "type": "string",
+                       "example": "john.doe@email.com"
+                   },
+                   "password": {
+                       "type": "string",
+                       "description": "unencrypted user's password",
+                       "example": "!1234aWe1Ro3$#"
+                   },
+                   "role": {
+                       "type": "string",
+                       "example": "patient"
+                   }
+               }
+           }
+       }
+    }
+}
