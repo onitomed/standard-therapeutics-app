@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://onito-webapp.onrender.com'
+  apiUrl: 'https://standard-therapeutics-app.onrender.com'
 };
