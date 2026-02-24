@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
 export class AddReportsComponent implements OnInit {
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle("Add Reports - ONITO");
+    this.titleService.setTitle("Add Reports - Standard Therapeutics");
   }
 
   ngOnInit(): void {

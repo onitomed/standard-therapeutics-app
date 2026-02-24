@@ -16,7 +16,6 @@ import { HeaderItemComponent } from './components/header-item/header-item.compon
 import { ContainerComponent } from './components/container/container.component';
 import { ButtonComponent } from './components/button/button.component';
 import { AddReportsComponent } from './pages/add-reports/add-reports.component';
-import { ModelsComponent } from './pages/models/models.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -29,19 +28,16 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectpatientComponent } from './components/selectpatient/selectpatient.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AitpComponent } from './pages/aitp/aitp.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 const appRoutes: Routes = [
   {path: 'home', component: ContainerComponent},
   {path: 'add-reports', component: AddReportsComponent},
-  {path: 'models', component: ModelsComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', component: LoginComponent},
   {path: 'reports', component: ReportsComponent},
-  {path: 'view', component: ViewComponent},
-  {path: 'aitp', component: AitpComponent}
+  {path: 'view', component: ViewComponent}
 ]
 
 @NgModule({ declarations: [
@@ -51,7 +47,6 @@ const appRoutes: Routes = [
         ContainerComponent,
         ButtonComponent,
         AddReportsComponent,
-        ModelsComponent,
         FileUploadComponent,
         RegisterComponent,
         UserProfileComponent,
@@ -61,7 +56,6 @@ const appRoutes: Routes = [
         SpinnerComponent,
         SelectpatientComponent,
         FooterComponent,
-        AitpComponent,
     ],
     bootstrap: [AppComponent], imports: [BrowserModule, RouterModule.forRoot(appRoutes, { enableTracing: true }), FormsModule, PdfViewerModule, ClipboardModule, NoopAnimationsModule, NgxChartsModule], providers: [authInterceptorProviders, { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

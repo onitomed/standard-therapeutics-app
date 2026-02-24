@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   isLoading = false
   firstUploaded = false
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private reportsService: ReportsService, private titleService: Title) {
-    this.titleService.setTitle("Sign Up - ONITO");
+    this.titleService.setTitle("Sign Up - Standard Therapeutics");
   }
   ngOnInit(): void {
   }

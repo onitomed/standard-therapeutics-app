@@ -24,7 +24,7 @@ export class ViewComponent implements OnInit {
   loadingText: string = 'loading  reports'
 
   constructor(private route: ActivatedRoute, private reportsService: ReportsService, private router: Router, private titleService: Title) {
-    this.titleService.setTitle("View Reports - ONITO");
+    this.titleService.setTitle("View - Standard Therapeutics");
     this.isLoading = true
     let token = null
     this.route.queryParams.subscribe(params => {

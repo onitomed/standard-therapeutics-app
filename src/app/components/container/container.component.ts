@@ -19,7 +19,7 @@ export class ContainerComponent implements OnInit {
 
   constructor(private reportsService: ReportsService,
     private userService: UserService, private router: Router, private titleService: Title) {
-      this.titleService.setTitle("User Profile - ONITO");
+      this.titleService.setTitle("User Profile - Standard Therapeutics");
     }
 
   ngOnInit(): void {
