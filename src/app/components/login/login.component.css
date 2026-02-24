@@ -5,7 +5,9 @@
 h2 {
     margin: 0 30px;
 }
-
+input {
+    width: 200px;
+}
 
 .alert-success {
     font-size: 1.6rem;
