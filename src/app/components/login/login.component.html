@@ -1,79 +1,78 @@
 <div>
-    <div class="card">
-      <div *ngIf="!isLoggedIn">
-      <h2>Login</h2>
-      <form
-        *ngIf="!isLoggedIn"
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-        <div class="form-group">
-          <label for="email"></label>
-          <input
-          placeholder="Email"
-            type="email"
-            class="form-control"
-            name="email"
-            [(ngModel)]="form.email"
-            required
-            #email="ngModel"
-          />
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="email.errors && f.submitted"
-          >
-            Email is required!
-            <div *ngIf="email.errors['email']">Valid email is required</div></div>
-        </div>
-        <div class="form-group">
-          <label for="password"></label>
-          <input
-          placeholder="Password"
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="form.password"
-            required
-            minlength="6"
-            #password="ngModel"
-          />
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="password.errors && f.submitted"
-          >
-            <div *ngIf="password.errors['required']">Password is required</div>
-            <div *ngIf="password.errors['minlength']">
-              Password must be at least 6 characters
-            </div>
-          </div>
-        </div>
-        <div class="form-group flex">
-          <app-button text="Login" type="submit" color="dark blue">
-          </app-button>
-          
-          <app-button text="Sign Up" color = "dark blue" routerLink="/register">
-          </app-button>
-        </div>
-        <div *ngIf="isLoading" class="loader">
-          <app-spinner></app-spinner>
-        </div>
-        <div class="form-group">
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="f.submitted && isLoginFailed"
-          >
-            Login failed: {{ errorMessage }}
-          </div>
-        </div>
-      </form>
-    </div>
-      <div class="alert alert-success" *ngIf="isLoggedIn">
-        Welcome to Standard Therapeutics
+  <div class="card">
+    
+    <h2 *ngIf="!isLoggedIn">Login</h2>
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group" *ngIf="!isLoggedIn">
+        <label for="email"></label>
+        <input
+        placeholder="Email"
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          #email="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="!isLoggedIn && email.errors && f.submitted"
+        >
+          Email is required!
+          <div *ngIf="!isLoggedIn && email.errors['email']">Valid email is required</div></div>
       </div>
+      <div class="form-group" *ngIf="!isLoggedIn">
+        <label for="password"></label>
+        <input
+        placeholder="Password"
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="!isLoggedIn && password.errors && f.submitted"
+        >
+          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group flex" *ngIf="!isLoggedIn">
+        <app-button text="Login" type="submit" color="dark blue">
+        </app-button>
+        
+        <app-button text="Sign Up" color = "dark blue" routerLink="/register">
+        </app-button>
+      </div>
+      <div *ngIf="isLoading" class="loader">
+        <app-spinner></app-spinner>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Welcome to Standard Therapeutics
     </div>
   </div>
+</div>
