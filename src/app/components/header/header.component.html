@@ -1,0 +1,21 @@
+<header>
+    <div class="mobileOff">
+        <div>
+            <app-header-item text="Standard Therapeutics" route="/"></app-header-item>
+        </div>
+        <div>
+            <app-header-item *ngIf="this.isLoggedIn" text="Reports" route="reports"></app-header-item>
+            <app-header-item *ngIf="this.isLoggedIn" text="Profile" route="home"></app-header-item>
+            <a href='https://www.standardthera.com/' class='alink'>About</a>
+        </div>
+    </div>
+    <div class="mobileOn">
+        <div>
+            <a routerLink="/"><img class='mobOn'src="assets/st-logo.png" alt="ST-logo" width="60px"></a>
+        </div>
+        <div>
+            <app-header-item *ngIf="this.isLoggedIn" text="Reports" route="reports"></app-header-item>
+            <app-header-item *ngIf="this.isLoggedIn" text="Profile" route="home"></app-header-item>
+        </div>
+    </div>
+</header>

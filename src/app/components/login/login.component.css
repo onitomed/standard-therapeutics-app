@@ -1,0 +1,43 @@
+* {
+    padding: 10px;
+}
+
+h2 {
+    margin: 0 30px;
+}
+
+
+.alert-success {
+    font-size: 1.6rem;
+    background-color: var(--primary-color);
+}
+.flex {
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-start;
+}
+.loader {
+    display: flex;
+    justify-content: center;
+    margin: -75px 0 0 0;
+    
+}
+
+@media screen and (max-width: 768px) {
+      
+    .flex {
+        flex-direction: column;        
+    }
+    .card {
+    background-color: #f6f6f6;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    color: #333;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+      
+}

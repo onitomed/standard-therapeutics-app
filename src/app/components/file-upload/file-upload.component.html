@@ -1,0 +1,14 @@
+<input type="file" class="file-upload" name="file" id="file" class="myclass" [accept]="format" (change)="handleFileInput($event)"/>
+<label for="file">{{labeltext}}</label>
+<div *ngIf="fileToUpload">
+    <!-- Display file details -->
+    <app-button text="Upload" color="dark blue" (btnClick)="uploadFile()"></app-button><app-spinner *ngIf="isLoading"></app-spinner><div class="alert alert-success" *ngIf="uploadStatus === 'completed'">Upload done</div>
+    <section class="file-details">
+      <h3>Report Details</h3>
+      <ul>
+        <li><strong>Filename:</strong> {{fileToUpload.name}}</li>
+        <li><strong>File Type:</strong> {{fileToUpload.type}}</li>
+        <li><strong>File Size:</strong> {{fileToUpload.size/1024 | number : '1.0-2' }} kB</li>
+      </ul>
+    </section>
+</div>

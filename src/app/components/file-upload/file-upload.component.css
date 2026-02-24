@@ -1,0 +1,32 @@
+.myclass + label {
+    display: inline-block;
+    padding: 10px 12px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 5px solid var(--primary-color);
+    border-radius: 111px;
+    font-size: 1.4rem;
+}
+
+* {
+    margin: 10px 0;
+}
+.myclass:focus + label,
+.myclass + label:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 5px solid var(--primary-color);
+}
+
+.myclass {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.file-details h3,li{
+    padding: 10px 0;
+}

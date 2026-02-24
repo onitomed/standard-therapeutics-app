@@ -1,0 +1,43 @@
+<div class="container">
+    <h2 class="title">
+        AUTOIMMUNE DISEASE TREATMENT PLANNER (AITP)
+    </h2>
+    <p class="error-red-info">Demo for illustration purposes</p>
+    <p class="info">AITP is not approved by FDA, EMA or CDSCO</p>
+    <p class="error-red-info">Choose healthy or rheumatoid arthritis patient</p>
+    <!-- <div *ngIf="isLoggedIn" class="rflex">
+        <app-selectpatient></app-selectpatient>
+        <p class="error-red-info">Synovium scRNAseq data not found</p>
+    </div> -->
+    <!-- <app-file-upload format=".h5ad" labeltext="Upload scRNAseq count matrix" [dummy]="true"></app-file-upload> -->
+
+    <label class='value' for="p">Patient examples</label>
+    <select class='form-control' name="p" id="p" [(ngModel)]="patientSm" (ngModelChange)="onChange($event)">
+        <option value="" disabled>Select Patient</option>
+        <option *ngFor="let patient of patients" [ngValue]="patient">{{patient}}</option>
+    </select>
+
+        <ngx-charts-bar-horizontal-normalized
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="p1"
+        [legendPosition]="legendPosition"
+        (window:resize)="onResize($event)"
+        [xAxis]="showXAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        (select)="onSelect($event)">
+    </ngx-charts-bar-horizontal-normalized>
+    <br><br><br>
+    
+
+    <h3 class="value">Cell Type Abundance Phenotype (CTAP): <div class='error-red-info'>{{ pdata.ctap }}</div></h3>
+    <h3 class="value">Total number of cells: <div class='error-red-info'>{{ pdata.total_cells }}</div></h3>
+    <h3 class="value">Recommended drug: <div class='error-red-info'>{{ pdata.rec }}</div></h3>
+
+
+    <p class="info">AITP analyzes synovium single-cell RNA sequencing data from patients with rheumatoid arthritis to determine numbers of different immune cell types and cell-type abundance phenotype (CTAP). AITP recommends drugs based on CTAP to specifically target immune dysregulation. AITP chooses from 14 drugs approved by US FDA for rheumatoid arthritis.</p>
+    
+</div>

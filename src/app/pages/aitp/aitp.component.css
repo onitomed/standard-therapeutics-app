@@ -1,0 +1,94 @@
+.title {
+  color: var(--primary-color);
+  margin: 10px 0;
+}
+* {
+  margin: 5px 0px;
+  padding: 5px 0px;
+}
+.rflex {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.rflex p {
+  margin: 10px;
+}
+.mtitle app-button{
+  margin: 0px 20px;
+}
+.error-red-info {
+  color: red;
+  font-size: 1.2rem;
+    
+}
+.info {
+    color: black;
+    font-size: 1.2rem;  
+}
+.container {
+    padding: 0 40px;    
+}
+
+select{
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  text-align: center;
+  
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+  margin: 10px;
+  width: 200px;
+  
+}
+div {
+  display: inline;
+  padding: 0;
+}
+label {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  text-align: center; 
+  margin: 0px 10px 10px 0px;
+}
+.field {
+  color: var(--secondary-color);
+}
+
+.value {
+  color: var(--primary-color);
+}
+
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  label {
+    margin: 0px 10px 10px 0px;
+    font-size: 1.4rem;
+  }
+  select {
+    margin: 10px 10px 10px 0px;
+  }
+
+    
+}
+@media screen and (max-width: 500px) {
+  .container {
+    padding: 0 10px;
+  }
+  .mtitle {
+    flex-direction: column;
+    margin: 10px 0px;
+  }
+  .mtitle app-button {
+    
+    margin: 0px 0px;
+  }
+  .rflex {
+    display: flex;
+    flex-direction: column;
+    
+  }
+}

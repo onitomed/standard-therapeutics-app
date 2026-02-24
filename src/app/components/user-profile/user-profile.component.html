@@ -1,0 +1,92 @@
+<h1>
+    User Profile
+</h1>
+
+<div class='flex'><app-selectpatient></app-selectpatient>
+<app-button text="Add Patient to Profile" color="dark blue" (btnClick)="addPatientMenu()"></app-button>
+
+</div>
+<div *ngIf="showAddPatientMenu">
+    <form action="">
+        <input type="checkbox" [(ngModel)]="newpt" id='newpt' name="newpt" [value]="true" (change)="onSelectionChange(newpt)" >
+        <label for="newpt">New Patient</label>
+    </form>
+</div>
+<form
+    *ngIf="showAddPatientMenu && existingPatientForm"
+    name="form"
+    (ngSubmit)="onSubmit()"
+    #f="ngForm"
+    novalidate
+  >
+    <div class="form-group">
+      <label for="url">Patient Share Link</label>
+      <input
+      placeholder="Enter Link"
+      id="url"
+        type="url"
+        
+        name="sharelink"
+        [(ngModel)]="form.sharelink"
+        required
+        #sharelink="ngModel"
+      />
+      
+    
+      <app-button text="Add Patient" type="submit" color="dark blue">
+      </app-button>
+    
+    </div>
+    <h3 class="field" *ngIf="added">Patient Added Successfully</h3>
+    <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="errors && submitted"
+          >
+            <br>
+            <div *ngIf="errors.includes('Patient not found')">Patient not found with share link</div>
+            <div *ngIf="errors.includes('Already has access')">User already has access to patient</div>
+            <div *ngIf="errors.includes('No token')">Invalid patient share link</div>
+            <!-- <div *ngIf="password.errors['minlength']">
+              Password must be at least 6 characters
+            </div> -->
+          </div>
+          
+    
+  </form>
+  <form
+  *ngIf="showAddPatientMenu && newPatientForm"
+  name="form"
+  (ngSubmit)="onSubmitNew()"
+  #f="ngForm"
+  novalidate
+>
+  <div class="form-group">
+    <label for="url">Patient Name</label>
+    <input
+    placeholder="Enter Name"
+    id="name"
+      type="text"
+      
+      name="name"
+      [(ngModel)]="form.name"
+      required
+      #sharelink="ngModel"
+    />
+    
+  
+    <app-button text="Add Patient" type="submit" color="dark blue">
+    </app-button>
+    
+  </div>
+  <h3 class="field" *ngIf="added">Patient Added Successfully</h3>
+  
+  
+</form>
+
+
+
+<br>
+<h3 class="field">Name: <div class="value">{{ user.name }}</div></h3>
+<h3 class="field">Role: <div class="value">{{ user.roles[user.roles.length-1] | titlecase }}</div></h3>
+<h3 class="field">Email: <div class="value">{{ user.email }}</div></h3>

@@ -1,0 +1,5 @@
+<label class='value' for="p">Patient</label>
+<select class='form-control' name="p" id="p" [(ngModel)]="patientSm" (ngModelChange)="onChange($event)">
+    <option value="" disabled>Select Patient</option>
+    <option *ngFor="let patient of patients" [ngValue]="patient.name">{{patient.name}}</option>
+</select>

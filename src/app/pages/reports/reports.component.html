@@ -1,0 +1,31 @@
+<head><title>ONITO - Reports</title></head>
+<div>
+
+  
+  <div class="flex">
+      <div><app-selectpatient></app-selectpatient></div>
+      <div><a routerLink='/add-reports'><app-button text="Add Reports" color="dark blue"></app-button></a></div>
+      
+      
+      <div><app-button text="Share" color="dark blue" [cdkCopyToClipboard]="link" (cdkCopyToClipboardCopied)="_copied($event)" ></app-button></div>
+    </div>
+
+<div class="flex" *ngIf="copyMessageDisplay">
+  {{copyMessage}}
+</div></div>
+<div>
+  <div *ngIf="isLoading" class="loader">
+    <app-spinner ></app-spinner>
+    <p class="loading-text">{{loadingText}}</p>
+  </div>
+<div *ngIf="!noReports">
+  <pdf-viewer [src]="pdfSrc"
+        
+        [render-text]="true"
+        [original-size]="true"
+        [fit-to-page]="true"
+        
+></pdf-viewer></div>
+</div>
+    
+
