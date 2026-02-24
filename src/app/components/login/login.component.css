@@ -24,6 +24,9 @@ input {
     margin: -75px 0 0 0;
     
 }
+input {
+    width: 200px;
+}
 
 @media screen and (max-width: 768px) {
       
