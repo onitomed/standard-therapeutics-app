@@ -65,7 +65,7 @@ export class ReportsComponent implements OnInit {
       try {
         const shareData = {
           title: `${this.user.name}'s medical reports`,
-          text: `Private link to ${this.user.name}'s medical reports on ONITO`,
+          text: `Link to ${this.user.name}'s medical reports on Standard Therapeutics:`,
           url: this.link
         };
         navigator.share(shareData);
