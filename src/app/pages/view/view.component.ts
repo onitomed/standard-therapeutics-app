@@ -72,7 +72,7 @@ export class ViewComponent implements OnInit {
       try {
         const shareData = {
           title: `Patient medical reports`,
-          text: `Private link to patient's medical reports on ONITO`,
+          text: `Link to patient's medical reports on Standard Therapeutics:`,
           url: this.link
         };
         navigator.share(shareData);
