@@ -31,7 +31,7 @@ export class ReportsComponent implements OnInit {
   user!: User
   router!: Router;
   updatePdf: boolean = false
-  loadingText: string = 'loading  reports'
+  loadingText: string = 'Loading  Reports'
   
 
   constructor(private reportsService: ReportsService, private userService: UserService, router: Router, private selectpatientService: SelectpatientService, private titleService: Title) {
