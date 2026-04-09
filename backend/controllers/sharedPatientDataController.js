@@ -23,16 +23,22 @@ const getShareLink = asyncHandler(async (req, res) => {
 })
 const getSharedPatientData = asyncHandler(async (req, res) => {
     const token = Buffer.from(req.params.id, 'base64url').toString()
-    patientId=jwt.verify(token, process.env.JWT_SECRET).id
-    const response = ''
     try {
+        patientId=jwt.verify(token, process.env.JWT_SECRET).id
         const base64Pdf = await getPdfFromDatastore(patientId)
         res.contentType("application/pdf")
         res.setHeader( "Content-Disposition", "inline")
         res.status(200).send({base64Pdf: base64Pdf})
-    } catch (err) {
-        res.status(500)
-        throw new Error(err.toString())
+        
+    } catch (error) {
+        if (error.name == 'TokenExpiredError') {
+            res.status(401)
+            throw new Error('TokenExpiredError')
+        }
+        else    {
+            res.status(500)
+            throw new Error(err.toString())
+        }
     }
 })
 
