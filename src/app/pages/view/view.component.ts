@@ -38,7 +38,7 @@ export class ViewComponent implements OnInit {
             if (resBody.hasOwnProperty("stack") && resBody["stack"].includes('TokenExpiredError')) {
               this.noReports = true
               this.isLoading = false
-              this.errorMessage = "Permission expired. Ask report owner to reshare link."
+              this.errorMessage = "Permission expired. Ask to reshare link."
             }
             else {
               if (resBody.hasOwnProperty("base64Pdf")) {
@@ -50,7 +50,9 @@ export class ViewComponent implements OnInit {
               }
             }
           }
-      }, (err) => {
+      }, (err) => { 
+        if (err.statusText == 'Unauthorized')
+          this.errorMessage = "Permission expired. Ask for new link."
         this.isLoading = false
         this.noReports = true
       });
@@ -78,7 +80,7 @@ export class ViewComponent implements OnInit {
         navigator.share(shareData);
         
       } catch (err) {
-        console.log(`Error: ${err}`)
+        throw new Error("Error sharing")
       }
     }
     setTimeout(() => {this.copyMessageDisplay=false}, 5000)
