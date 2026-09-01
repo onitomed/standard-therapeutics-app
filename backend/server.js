@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const swaggerUi = require('swagger-ui-express')
+const { execFile } = require('child_process')
 
 const dotenv = require('dotenv').config({ path: path.join(__dirname, 'config', 'config.env') })
 const {errorHandler} = require('./middleware/errorMiddleware')
