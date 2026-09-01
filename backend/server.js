@@ -32,4 +32,13 @@ app.get('/docs', swaggerUi.setup(swaggerDocument));
 
 app.use(errorHandler)
 
-app.listen(port, () => console.log(`Server started on port ${port}`))
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`)
+    execFile('qpdf', ['--version'], (err, stdout) => {
+        if (err) {
+            console.error('qpdf not found on PATH -- PDF merges will fail:', err.message)
+        } else {
+            console.log('qpdf available:', stdout.split('\n')[0])
+        }
+    })
+})
