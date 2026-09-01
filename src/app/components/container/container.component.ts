@@ -31,8 +31,11 @@ export class ContainerComponent implements OnInit {
     })
 
     this.reportsService.findById()
-    .subscribe((b64String: string): void => {
-      const byteArray = new Uint8Array(atob(b64String).split('').map(char => char.charCodeAt(0)));
+    .subscribe((response) => {
+      if (!response?.body) {
+        return;
+      }
+      const byteArray = new Uint8Array(atob(response.body).split('').map(char => char.charCodeAt(0)));
       const file = new Blob([byteArray], {type: 'application/pdf'});
       const fileURL = URL.createObjectURL(file);
       window.open(fileURL, 'width=1000, height=800');
